@@ -7,7 +7,7 @@ git submodule update --remote
 
 # install Caffe dependencies
 sudo apt-get -qq install libprotobuf-dev libleveldb-dev libsnappy-dev libhdf5-serial-dev protobuf-compiler libatlas-base-dev
-sudo apt-get -qq install --no-install-recommends libboost1.55-all-dev
+sudo apt-get -qq install --no-install-recommends libboost-all-dev
 sudo apt-get -qq install libgflags-dev libgoogle-glog-dev liblmdb-dev
 
 # install Dense_Flow dependencies

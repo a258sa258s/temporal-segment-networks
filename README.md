@@ -7,6 +7,12 @@ bash build_all.sh
 ```
 但是caffe要用我從tsn fork過來的版本,裡面修正了cmake opencv dependecy lib path
 
+```demo
+python tools/eval_net.py hmdb51 1 rgb Frames/out \
+ models/hmdb51/tsn_bn_inception_rgb_deploy.prototxt models/hmdb51_split_1_tsn_rgb_reference_bn_inception.caffemodel \
+ --num_worker 2 --save_scores scr.txt
+```
+
 # Temporal Segment Networks (TSN)
 
 This repository holds the codes and models for the paper

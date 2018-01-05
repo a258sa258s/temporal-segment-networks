@@ -36,8 +36,8 @@ echo "Building OpenCV" $version
 cd opencv-$version
 [[ -d build ]] || mkdir build
 cd build
-cmake -D CMAKE_BUILD_TYPE=RELEASE -D WITH_TBB=ON  -D WITH_V4L=ON ..
-if make -j32 ; then
+cmake -D CMAKE_CXX_COMPILER=/usr/bin/g++-5 -D CMAKE_C_COMPILER=/usr/bin/gcc-5 -D CMAKE_BUILD_TYPE=RELEASE -D WITH_TBB=ON  -D WITH_V4L=ON -D CUDA_GENERATION=Kepler -D WITH_CUDA=ON -D WITH_CUBLAS=ON -D CUDA_FAST_MATH=ON -D BUILD_TIFF=ON -D WITH_NVCUVID=ON  -D CMAKE_INSTALL_PREFIX=/usr/local ..
+if make -j4 ; then
     cp lib/cv2.so ../../../
     echo "OpenCV" $version "built."
 else
@@ -52,7 +52,7 @@ echo "Building Dense Flow"
 cd lib/dense_flow
 [[ -d build ]] || mkdir build
 cd build
-OpenCV_DIR=../../../3rd-party/opencv-$version/build/ cmake .. -DCUDA_USE_STATIC_CUDA_RUNTIME=OFF
+OpenCV_DIR=../../../3rd-party/opencv-$version/build/ cmake -D CMAKE_CXX_COMPILER=/usr/bin/g++-5 -D CMAKE_C_COMPILER=/usr/bin/gcc-5 -D CUDA_USE_STATIC_CUDA_RUNTIME=OFF ..
 if make -j ; then
     echo "Dense Flow built."
 else
@@ -66,11 +66,11 @@ cd ../../caffe-action
 [[ -d build ]] || mkdir build
 cd build
 if [ "$CAFFE_USE_MPI" == "MPI_ON" ]; then
-OpenCV_DIR=../../../3rd-party/opencv-$version/build/ cmake .. -DUSE_MPI=ON -DMPI_CXX_COMPILER="${CAFFE_MPI_PREFIX}/bin/mpicxx" -DCUDA_USE_STATIC_CUDA_RUNTIME=OFF
+OpenCV_DIR=../../../3rd-party/opencv-$version/build/ cmake -D CMAKE_CXX_COMPILER=/usr/bin/g++-5 -D CMAKE_C_COMPILER=/usr/bin/gcc-5 -DUSE_MPI=ON -DMPI_CXX_COMPILER="${CAFFE_MPI_PREFIX}/bin/mpicxx" -D CUDA_USE_STATIC_CUDA_RUNTIME=OFF ..
 else
-OpenCV_DIR=../../../3rd-party/opencv-$version/build/ cmake .. -DCUDA_USE_STATIC_CUDA_RUNTIME=OFF
+OpenCV_DIR=../../../3rd-party/opencv-$version/build/ cmake -D CUDA_USE_STATIC_CUDA_RUNTIME=OFF -D CMAKE_CXX_COMPILER=/usr/bin/g++-5 -D CMAKE_C_COMPILER=/usr/bin/gcc-5 ..
 fi
-if make -j32 install ; then
+if make -j4 install ; then
     echo "Caffe Built."
     echo "All tools built. Happy experimenting!"
     cd ../../../

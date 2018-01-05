@@ -1,7 +1,7 @@
 # 修改成我的電腦可以建置的配置
 安裝在anaconda
 ```
-conda create --name tsn python=2.7
+conda create --name tsn python=3.6
 
 bash build_all.sh
 ```

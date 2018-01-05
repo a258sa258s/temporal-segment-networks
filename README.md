@@ -1,3 +1,12 @@
+# 修改成我的電腦可以建置的配置
+安裝在anaconda
+```
+conda create --name tsn python=2.7
+
+bash build_all.sh
+```
+但是caffe要用我從tsn fork過來的版本,裡面修正了cmake opencv dependecy lib path
+
 # Temporal Segment Networks (TSN)
 
 This repository holds the codes and models for the paper

@@ -1,5 +1,6 @@
 # 修改成我的電腦可以建置的配置
 安裝在anaconda
+先用python 3.6 build 再用python2.7 eval or training
 ```
 conda create --name tsn python=3.6
 

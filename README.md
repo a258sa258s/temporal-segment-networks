@@ -1,7 +1,8 @@
 # 修改成我的電腦可以建置的配置
 安裝在anaconda
 先用python 3.6 build 再用python2.7 eval or training
-還有一個重點下載完opencv2.4.13後先中斷 不要急著BUILD
+
+還有一個重點下載完opencv2.4.13後先中斷 不要急著BUILD。
 把opencv cmake內的OpenCVDetectCUDA.cmake加上下面這兩行，pascal的卡才能用
 ```
 set(__cuda_arch_bin "6.1")
